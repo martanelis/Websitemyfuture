@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Sayang ❤️</title>
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap)" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #4ECDC4;
+            --light-green: #A8E6CF;
+            --soft-blue: #88D8E8;
+            --pink-accent: #FF6B9D;
+            --white: #FFFFFF;
+            --dark-text: #2C3E50;
+            --light-bg: #F8FFFE;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Background */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatHeart 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: floatParticle 20s infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px);
+            }
+            50% {
+                transform: translateY(-10px) translateX(-20px);
+            }
+            75% {
+                transform: translateY(-40px) translateX(10px);
+            }
+        }
+
+        /* Opening Screen */
+        .opening-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-green) 50%, var(--soft-blue) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .opening-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .opening-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .opening-text {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1.5s ease 0.3s forwards;
+            opacity: 0;
+            line-height: 1.8;
+        }
+
+        .opening-subtitle {
+            font-size: 1.1rem;
+            color: var(--pink-accent);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.5s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .open-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--pink-accent), var(--primary-green));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            animation: fadeInUp 1.5s ease 0.9s forwards, pulse 2s infinite 2.5s;
+            opacity: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+        }
+
+        .open-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Section 1: Slideshow */
+        .slideshow-section {
+            background: linear-gradient(180deg, var(--light-bg) 0%, var(--white) 100%);
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            max-width: 670px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .slideshow-wrapper {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .slideshow-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--light-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--primary-green);
+            transform: scale(1.2);
+        }
+
+        .slideshow-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            transform: translateY(-50%);
+        }
+
+        .arrow {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .arrow:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        /* Section 2: Timeline */
+        .timeline-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-bg) 100%);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--light-green), var(--primary-green), var(--pink-accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-left: 60%;
+            width: 35%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 5%;
+            margin-right: 60%;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--primary-green);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Section 3: Letter */
+        .letter-section {
+            background: linear-gradient(180deg, var(--light-bg) 0%, var(--white) 100%);
+        }
+
+        .letter-container {
+            max-width: 700px;
+            width: 100%;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-container::before {
+            content: '❤️';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .letter-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--dark-text);
+        }
+
+        .letter-text p {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .letter-text p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: var(--pink-accent);
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Section 4: Qualities */
+        .qualities-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-bg) 100%);
+        }
+
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .quality-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+            transition: all 0.6s ease;
+        }
+
+        .quality-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .quality-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(78, 205, 196, 0.2);
+        }
+
+        .quality-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .quality-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+        }
+
+        /* Section 5: Final */
+        .final-section {
+            background: linear-gradient(180deg, var(--light-bg) 0%, var(--light-green) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .final-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .final-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: var(--dark-text);
+        }
+
+        .hug-btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--pink-accent), #FF8FB1);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .hug-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .hug-message {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            font-size: 1.3rem;
+            color: var(--pink-accent);
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hug-message.show {
+            display: block;
+        }
+
+        /* Counter */
+        .counter-section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .counter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .counter-display {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .counter-item {
+            background: linear-gradient(135deg, var(--primary-green), var(--soft-blue));
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            min-width: 100px;
+        }
+
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confettiFall 5s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100%) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .opening-name {
+                font-size: 2.5rem;
+            }
+
+            .opening-text {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .slide img {
+                height: 300px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                margin-left: 60px !important;
+                width: calc(100% - 70px) !important;
+            }
+
+            .timeline-icon {
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .letter-container {
+                padding: 2rem;
+            }
+
+            .final-title {
+                font-size: 2.5rem;
+            }
+
+            .counter-item {
+                min-width: 80px;
+                padding: 1rem 1.5rem;
+            }
+
+            .counter-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Opening Screen -->
+    <div class="opening-screen" id="openingScreen">
+        <h1 class="opening-name">apt.ELENI KRISTIANI DAELI, S.Farm</h1>
+        <p class="opening-text">Selamat atas langkah barumu ❤️</p>
+        <p class="opening-subtitle">Hari ini kamu resmi menjadi Apoteker Penanggung Jawab</p>
+        <button class="open-btn" onclick="openSurprise()">✨ Buka Kejutan ✨</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent" style="display: none;">
+
+        <!-- Section 1: Slideshow -->
+        <section class="slideshow-section">
+            <h2 class="section-title">📸 Momen Perjalananmu</h2>
+            <div class="slideshow-container">
+                <div class="slideshow-wrapper" id="slideshowWrapper">
+                    <div class="slide">
+                        <img src="mylove.jpeg" alt="Foto 1">
+                        <div class="slide-caption">Hari pertama memakai jas putih 🥼</div>
+                    </div>
+                    <div class="slide">
+                        <img src="Juang.jpeg" alt="Foto 2">
+                        <div class="slide-caption">Perjuangan yang tidak mudah 📚</div>
+                    </div>
+                    <div class="slide">
+                        <img src="Lulus.Jpeg" alt="Foto 3">
+                        <div class="slide-caption">Lelah yang akhirnya terbayar 💪</div>
+                    </div>
+                    <div class="slide">
+                        <img src="bangga.jpeg" alt="Foto 4">
+                        <div class="slide-caption">Aku bangga padamu ❤️</div>
+                    </div>
+					<div class="slide">
+					 <img src="foto3.jpeg" alt="Foto 5">
+                        <div class="slide-caption">My❤️</div>
+                    </div>
+					<div class="slide">
+					 <img src="kolase.jpeg" alt="Foto 6">
+                        <div class="slide-caption">My Future Album❤️</div>
+                    </div>
+                </div>
+                <div class="slideshow-arrows">
+                    <button class="arrow" onclick="changeSlide(-1)">❮</button>
+                    <button class="arrow" onclick="changeSlide(1)">❯</button>
+                </div>
+            </div>
+            <div class="slideshow-nav" id="slideshowNav"></div>
+        </section>
+
+        <!-- Section 2: Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">✨ Perjalanan Menuju Sukses</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎓</div>
+                    <div class="timeline-content glass-card">
+                        <h3 class="timeline-title">Kuliah Farmasi</h3>
+                        <p class="timeline-desc">Awal dari semua mimpi besar</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">📚</div>
+                    <div class="timeline-content glass-card">
+                        <h3 class="timeline-title">Masa Skripsi</h3>
+                        <p class="timeline-desc">Perjuangan tanpa henti</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">💉</div>
+                    <div class="timeline-content glass-card">
+                        <h3 class="timeline-title">Ujian Kompetensi</h3>
+                        <p class="timeline-desc">Menguji semua yang dipelajari</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">👩‍⚕️</div>
+                    <div class="timeline-content glass-card">
+                        <h3 class="timeline-title">Menjadi Apoteker</h3>
+                        <p class="timeline-desc">Impian yang jadi kenyataan</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <div class="timeline-content glass-card">
+                        <h3 class="timeline-title">Apoteker Penanggung Jawab</h3>
+                        <p class="timeline-desc">Puncak dari semua kerja keras</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Letter -->
+        <section class="letter-section">
+            <h2 class="section-title">💌 Surat Untukmu</h2>
+            <div class="letter-container glass-card">
+                <div class="letter-text" id="letterText">
+                    <p>Sayang,</p>
+                    <p>Aku melihat bagaimana kamu berjuang ketika banyak orang hanya melihat hasilnya.</p>
+                    <p>Ada malam-malam panjang, rasa lelah, dan keraguan yang kamu lewati.</p>
+                    <p>Aku tahu tidak mudah. Tapi kamu tetap bertahan.</p>
+                    <p>Hari ini, semua itu terbayar.</p>
+                    <p>Aku bangga menjadi orang yang bisa menyaksikan perjalananmu.</p>
+                    <p>Kamu luar biasa. i love u sayang❤️</p>
+					<p><b>From Your Boyfriend ❤️</b></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Qualities -->
+        <section class="qualities-section">
+            <h2 class="section-title">🌟 Hal yang Aku Kagumi Darimu</h2>
+            <div class="qualities-grid">
+                <div class="quality-card glass-card">
+                    <div class="quality-icon">🩺</div>
+                    <div class="quality-title">Tanggung Jawabmu</div>
+                </div>
+                <div class="quality-card glass-card">
+                    <div class="quality-icon">💪</div>
+                    <div class="quality-title">Ketekunanmu</div>
+                </div>
+                <div class="quality-card glass-card">
+                    <div class="quality-icon">❤️</div>
+                    <div class="quality-title">Kepedulianmu kepada Pasien</div>
+                </div>
+                <div class="quality-card glass-card">
+                    <div class="quality-icon">✍️</div>
+                    <div class="quality-title">Semangatmu untuk Terus Belajar</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Counter Section -->
+        <section class="counter-section">
+            <h2 class="counter-title">💕 Kita Sudah Bersama Selama</h2>
+            <div class="counter-display">
+                <div class="counter-item">
+                    <div class="counter-number" id="years">0</div>
+                    <div class="counter-label">Tahun</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="months">0</div>
+                    <div class="counter-label">Bulan</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">Hari</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Final -->
+        <section class="final-section" id="finalSection">
+            <div class="final-content">
+                <h1 class="final-title">Selamat, Sayang ❤️</h1>
+                <p class="final-text">
+                    Apoteker Penanggung Jawab bukan hanya sebuah jabatan.<br><br>
+                    Itu adalah bukti bahwa kerja kerasmu selama ini tidak sia-sia.
+                </p>
+                <button class="hug-btn" onclick="showHug()">Klik untuk Peluk Virtual 🤗</button>
+                <div class="hug-message" id="hugMessage">
+                    Aku bangga padamu, hari ini dan seterusnya ❤️
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        // Initialize floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['❤️', '💕', '💗', '💖', '💝'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Initialize particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Open surprise
+        function openSurprise() {
+            document.getElementById('openingScreen').classList.add('hidden');
+            document.getElementById('mainContent').style.display = 'block';
+            initSlideshow();
+            startRelationshipCounter();
+            initScrollAnimations();
+        }
+
+        // Slideshow
+        let currentSlide = 0;
+        let slideInterval;
+        const slides = document.querySelectorAll('.slide');
+
+        function initSlideshow() {
+            const navContainer = document.getElementById('slideshowNav');
+            
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                navContainer.appendChild(dot);
+            }
+            
+            startAutoSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlideshow();
+            resetAutoSlide();
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            updateSlideshow();
+            resetAutoSlide();
+        }
+
+        function updateSlideshow() {
+            const wrapper = document.getElementById('slideshowWrapper');
+            wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            const dots = document.querySelectorAll('.nav-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(() => {
+                currentSlide++;
+                if (currentSlide >= slides.length) currentSlide = 0;
+                updateSlideshow();
+            }, 4000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        // Relationship Counter
+        function startRelationshipCounter() {
+            // GANTI TANGGAL INI dengan tanggal jadian kalian
+            const startDate = new Date('2026-05-20');
+            const now = new Date();
+            
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // Timeline items
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                item.style.transitionDelay = (index * 0.2) + 's';
+                observer.observe(item);
+            });
+            
+            // Quality cards
+            document.querySelectorAll('.quality-card').forEach((card, index) => {
+                card.style.transitionDelay = (index * 0.15) + 's';
+                observer.observe(card);
+            });
+            
+            // Letter paragraphs
+            document.querySelectorAll('.letter-text p').forEach((p, index) => {
+                p.style.transitionDelay = (index * 0.3) + 's';
+                observer.observe(p);
+            });
+
+            // Final section confetti
+            const finalObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        createConfetti();
+                        finalObserver.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            finalObserver.observe(document.getElementById('finalSection'));
+        }
+
+        // Confetti
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#FF6B9D', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8FB1', '#88D8E8'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    if (Math.random() > 0.5) {
+                        confetti.style.borderRadius = '50%';
+                    }
+                    
+                    container.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 30);
+            }
+        }
+
+        // Virtual Hug
+        function showHug() {
+            document.getElementById('hugMessage').classList.add('show');
+            createConfetti();
+        }
+
+        // Initialize
+        createFloatingHearts();
+        createParticles();
+    </script>
+</body>
+</html>
